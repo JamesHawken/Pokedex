@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="16dp"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -13,39 +14,51 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/iceland" />
+
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/password">
+        android:hint="@string/password"
+        app:endIconMode="password_toggle">
 
         <androidx.appcompat.widget.AppCompatEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:background="@color/colorPrimary"
-        android:padding="8dp"/>
+        android:background="?colorPrimary"
+        android:padding="8dp"
+        android:text="@string/login" />
 
-    <ImageView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:src="@drawable/ic_psyduck"
-        android:tint="@color/colorAccent"/>
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:focusable="true">
 
-    <TextView
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_psyduck"
+            android:tint="?colorSecondary" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/theme"/>
+        android:fontFamily="@string/theme"
+        android:text="@string/theme" />
 
     <RadioGroup
         android:id="@+id/themeRadioGroup"
@@ -53,23 +66,24 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <RadioButton
+        <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/themeLight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/theme_light"/>
+            android:text="@string/theme_light" />
 
-        <RadioButton
+        <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/themeDark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/theme_dark"/>
+            android:text="@string/theme_dark" />
 
-        <RadioButton
+        <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/themeDefault"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/theme_default"/>
+            android:fontFamily="@font/days_one"
+            android:text="@string/theme_default" />
     </RadioGroup>
 
 </LinearLayout>
