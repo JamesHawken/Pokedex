@@ -15,8 +15,9 @@
     <string name="error_refresh">Impossible de rafraichir</string>
     <string name="error_load">Impossible de charger plus d\'éléments</string>
 
-    <string name="pokemon_weight">Poids : %1$s kg</string>
-    <string name="pokemon_height">Taille : %1$s cm</string>
+    <string name="pokemon_weight">Weight : %1$s kg</string>
+    <string name="pokemon_height">Size : %1$s m</string>
+    <string name="pokemon_base_experience">Base experience : %1$s xp</string>
 
     <string name="theme">Thème :</string>
     <string name="theme_light">Clair</string>

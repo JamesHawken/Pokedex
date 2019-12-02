@@ -23,6 +23,19 @@ class PokeApiClient: KoinComponent {
         return response.results.map { apiResourceResponseToPokemon(it) }
     }
 
+    suspend fun getMoves(list: List<String>): List<Move> {
+        return coroutineScope {
+            list.parallelMap(this) { name ->
+            val response = performRequest {
+                service.getMoveAsync(name)
+            }
+            moveResponseToMove(response)
+
+        }
+    }.toList()
+    }
+
+
     /**
      * Get a pokemon by its id
      */
@@ -91,8 +104,20 @@ class PokeApiClient: KoinComponent {
         detail = PokemonDetail(
             weight = pokemonResponse.weight / 10,
             height = pokemonResponse.height / 10,
+            base_experience = pokemonResponse.base_experience,
+            moves=pokemonResponse.moves.mapNotNull { it.move.name },
             types = pokemonResponse.types.mapNotNull { it.type.name }
         )
+    )
+
+    private fun moveResponseToMove(moveResponse: MoveResponse) = Move(
+        id = moveResponse.id,
+        name = moveResponse.name,
+        type=moveResponse.type.name!!,
+        pp =moveResponse.pp,
+        power = moveResponse.power,
+        accuracy = moveResponse.accuracy
+
     )
 
     private fun itemResponseToItem(itemResponse: ItemResponse, itemCategoryId: Int) = Item(
