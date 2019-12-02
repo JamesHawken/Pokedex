@@ -18,6 +18,7 @@
     <string name="pokemon_weight">Weight : %1$s kg</string>
     <string name="pokemon_height">Size : %1$s m</string>
     <string name="pokemon_base_experience">Base experience : %1$s xp</string>
+    <string name="pokemon_moves">Attaques:  %1$s</string>
 
     <string name="theme">Thème :</string>
     <string name="theme_light">Clair</string>

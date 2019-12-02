@@ -34,6 +34,7 @@ class PokemonDetailActivity: AppCompatActivity() {
 
         viewModel.pokemon.observe(this, Observer { pokemon ->
             title = pokemon?.name
+            moves.text= getString(R.string.pokemon_moves, pokemon?.detail?.moves.toString())
             weight.text = getString(R.string.pokemon_weight, pokemon?.detail?.weight.toString())
             height.text = getString(R.string.pokemon_height, pokemon?.detail?.height.toString())
             base_experience.text = getString(R.string.pokemon_base_experience, pokemon?.detail?.base_experience.toString())
