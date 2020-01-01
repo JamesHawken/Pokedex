@@ -34,6 +34,17 @@ class PokeApiClient: KoinComponent {
         }
     }.toList()
     }
+    suspend fun getEncounters(list: List<String>): List<Encounter> {
+        return coroutineScope {
+            list.parallelMap(this) { name ->
+                val response = performRequest {
+                    service.getEncounterAsync(name)
+                }
+                encounterResponseToEncounter(response)
+
+            }
+        }.toList()
+    }
 
 
     /**
@@ -106,7 +117,8 @@ class PokeApiClient: KoinComponent {
             height = pokemonResponse.height / 10,
             base_experience = pokemonResponse.base_experience,
             moves=pokemonResponse.moves.mapNotNull { it.move.name },
-            types = pokemonResponse.types.mapNotNull { it.type.name }
+            types = pokemonResponse.types.mapNotNull { it.type.name },
+            encounters = pokemonResponse.encounters.mapNotNull { it.encounter.name }
         )
     )
 
@@ -119,6 +131,15 @@ class PokeApiClient: KoinComponent {
         accuracy = moveResponse.accuracy
 
     )
+
+    private fun encounterResponseToEncounter(encounterResponse: EncounterResponse) = Encounter(
+        id = encounterResponse.id!!,
+        name = encounterResponse.name!!,
+        order=encounterResponse.order!!,
+        names =encounterResponse.names!!
+
+    )
+
 
     private fun itemResponseToItem(itemResponse: ItemResponse, itemCategoryId: Int) = Item(
         id = itemResponse.id,

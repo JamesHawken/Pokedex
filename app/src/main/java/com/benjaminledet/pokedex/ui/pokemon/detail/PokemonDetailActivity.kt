@@ -40,6 +40,8 @@ class PokemonDetailActivity: AppCompatActivity() {
             base_experience.text = getString(R.string.pokemon_base_experience, pokemon?.detail?.base_experience.toString())
             Picasso.get().load(pokemon?.iconUrl).into(icon)
             var typePrincipal= pokemon?.detail?.types?.get(0)
+            var encounters = pokemon?.detail?.encounters
+            print (encounters)
             val cl: ConstraintLayout = findViewById(R.id.detail_constraintLayout)
             when (typePrincipal) {
 

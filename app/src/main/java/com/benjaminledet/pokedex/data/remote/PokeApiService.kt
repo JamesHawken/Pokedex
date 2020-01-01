@@ -32,6 +32,9 @@ interface PokeApiService {
     @GET("move/{name}")
     suspend fun getMoveAsync(@Path("name") name: String): Response<MoveResponse>
 
+    @GET("encounter-method/{name}")
+    suspend fun getEncounterAsync(@Path("name") name: String): Response<EncounterResponse>
+
     companion object {
         private const val BASE_URL = "https://pokeapi.co/api/v2/"
 
