@@ -9,7 +9,7 @@ import com.benjaminledet.pokedex.data.model.*
 
 @Database(
     entities = [
-        Pokemon::class, Item::class, ItemPocket::class, ItemCategory::class, Move::class
+        Pokemon::class, Item::class, ItemPocket::class, ItemCategory::class, Move::class, Encounter::class
     ],
     version = PokedexDatabase.VERSION, exportSchema = true
 )

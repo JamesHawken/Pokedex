@@ -32,6 +32,8 @@ class PokemonRepository: KoinComponent {
 
     fun getMovesObservable(names: List<String>) =moveDao.getAllObservable(names)
 
+    fun getEncountersObservable(names: List<String>) =encounterDao.getAllObservable(names)
+
     fun getPokemonObservable(id: Int) = pokemonDao.getByIdObservable(id)
 
     fun getAllPokemonsObservable() = pokemonDao.getAllObservable()

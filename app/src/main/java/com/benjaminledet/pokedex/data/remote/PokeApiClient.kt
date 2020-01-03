@@ -1,7 +1,10 @@
 package com.benjaminledet.pokedex.data.remote
 
+import android.util.Log
 import com.benjaminledet.pokedex.data.model.*
 import com.benjaminledet.pokedex.data.remote.response.*
+import com.benjaminledet.pokedex.data.repository.PokemonRepository
+import com.benjaminledet.pokedex.data.repository.utils.Status
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
@@ -34,12 +37,14 @@ class PokeApiClient: KoinComponent {
         }
     }.toList()
     }
+
     suspend fun getEncounters(list: List<String>): List<Encounter> {
         return coroutineScope {
             list.parallelMap(this) { name ->
                 val response = performRequest {
                     service.getEncounterAsync(name)
                 }
+                Log.v("PokeAPIClient", "response: ${response}")
                 encounterResponseToEncounter(response)
 
             }
@@ -133,10 +138,10 @@ class PokeApiClient: KoinComponent {
     )
 
     private fun encounterResponseToEncounter(encounterResponse: EncounterResponse) = Encounter(
-        id = encounterResponse.id!!,
-        name = encounterResponse.name!!,
-        order=encounterResponse.order!!,
-        names =encounterResponse.names!!
+        id = encounterResponse.id,
+        name = encounterResponse.name,
+        order=encounterResponse.order,
+        names =encounterResponse.names
 
     )
 
