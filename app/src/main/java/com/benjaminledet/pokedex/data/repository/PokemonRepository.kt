@@ -89,11 +89,13 @@ class PokemonRepository: KoinComponent {
                 pokemon.detail?.moves?.let {list ->
                     Log.v(TAG, "list pokemon: ${list}")
                     if (list.isNotEmpty()) {
+
                         val moves= pokeApiClient.getMoves(list)
                         insertMoves(moves)
+                        Log.v("Moves", "insert moves ${moves}")
                     }
                 }
-
+                Log.v(TAG, "list encounters${pokemon.detail?.encounters}")
                 pokemon.detail?.encounters?.let {list ->
                     Log.v(TAG, "list encounters${list}")
                     if (list.isNotEmpty()) {
@@ -107,7 +109,7 @@ class PokemonRepository: KoinComponent {
 
             } catch (e: Exception) {
                 networkState.postValue(NetworkState.error(e.message))
-                Log.e(TAG, "refresh pokemon: ${Status.FAILED} : ${e.message}", e)
+                Log.e(TAG, "refresh pokemon encounters: ${Status.FAILED} : ${e.message}", e)
             }
         }
         return networkState

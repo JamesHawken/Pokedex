@@ -32,6 +32,7 @@ class PokeApiClient: KoinComponent {
             val response = performRequest {
                 service.getMoveAsync(name)
             }
+                Log.v("PokeAPIClient", "response de getMoves: ${response}")
             moveResponseToMove(response)
 
         }
@@ -59,6 +60,7 @@ class PokeApiClient: KoinComponent {
         val response = performRequest {
             service.getPokemonAsync(id)
         }
+        Log.v("PokeAPIClient", "response getPokemonDetail: ${response}")
         return pokemonResponseToPokemon(response)
     }
     /**
